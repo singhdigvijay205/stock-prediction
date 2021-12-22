@@ -4,13 +4,11 @@ from datetime import date
 
 import yfinance as yf
 from fbprophet import Prophet
-from fbprophet.plot import plot_plotly
-from plotly import graph_objs as go
 import moment
 
 st.title('Stock Forecast App')
 
-stocks = ('EURUSD=X','BTC-USD','GOOG', 'AAPL', 'MSFT', 'GME')
+stocks = ('BTC-USD','EURUSD=X','GOOG', 'AAPL', 'MSFT', 'GME')
 selected_stock = st.selectbox('Select dataset for prediction', stocks)
 
 previous_days = st.selectbox('Select days', ('1d','2d','3d','4d','5d','6d','7d','8d','9d'))
