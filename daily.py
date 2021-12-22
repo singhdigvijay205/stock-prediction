@@ -32,6 +32,7 @@ def load_data(ticker, previous_days, previous_data_freq):
     for row in data.itertuples():
         date = data.at[row.Index, 'Datetime']   
         data.at[row.Index, 'Datetime'] = str(getGMTTime(date))
+        st.text_area('data', str(data.at[row.Index, 'Datetime']))
     return data
 
 	
