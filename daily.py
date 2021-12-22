@@ -19,7 +19,7 @@ previous_data_freq = st.selectbox('Select Data timeframe', ('1m', '2m', '5m', '1
 
 def getGMTTime(utcString):
   date = moment.date(utcString, "%Y-%m-%d %H:%M:%S+00:00")
-  return date.locale('Asia/Kolkata').date.strftime("%Y-%m-%d %H:%M:%S") 
+  return date.locale('Asia/Kolkata').date.replace(tzinfo=None)
 
 def getGMTTimeForcast(utcString):
   date = moment.date(utcString, "%Y-%m-%dT%H:%M:%S")
@@ -32,7 +32,6 @@ def load_data(ticker, previous_days, previous_data_freq):
     for row in data.itertuples():
         date = data.at[row.Index, 'Datetime']   
         data.at[row.Index, 'Datetime'] = str(getGMTTime(date))
-        st.text_area('data', str(data.at[row.Index, 'Datetime']))
     return data
 
 	
