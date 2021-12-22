@@ -33,6 +33,7 @@ def load_data(ticker, previous_days, previous_data_freq):
         date = data.at[row.Index, 'Datetime']   
         temp = str(getGMTTime(date)).replace("+00:00", "")
         st.text(temp)
+        st.text(temp)
         data.at[row.Index, 'Datetime'] = '1234'
     return data
 
