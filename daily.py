@@ -5,8 +5,11 @@ from datetime import date
 import yfinance as yf
 from fbprophet import Prophet
 import moment
+import pytz
 
 st.title('Stock Forecast App')
+
+local = pytz.timezone('Asia/Kolkata')
 
 stocks = ('BTC-USD','EURUSD=X','GOOG', 'AAPL', 'MSFT', 'GME')
 selected_stock = st.selectbox('Select dataset for prediction', stocks)
@@ -16,8 +19,7 @@ previous_data_freq = st.selectbox('Select Data timeframe', ('1m', '2m', '5m', '1
 
 def getGMTTime(utcString):
   date = moment.date(utcString, "%Y-%m-%d %H:%M:%S+00:00")
-  print(date.timezone('Asia/Kolkata').date.strftime("%Y-%m-%d %H:%M:%S"))  
-  return date.timezone('Asia/Kolkata').date.strftime("%Y-%m-%d %H:%M:%S") 
+  return date.locale('Asia/Kolkata').date.strftime("%Y-%m-%d %H:%M:%S") 
 
 def getGMTTimeForcast(utcString):
   date = moment.date(utcString, "%Y-%m-%dT%H:%M:%S")
@@ -29,7 +31,7 @@ def load_data(ticker, previous_days, previous_data_freq):
     data.reset_index(inplace=True)
     for row in data.itertuples():
         date = data.at[row.Index, 'Datetime']   
-        data.at[row.Index, 'Datetime'] = str(getGMTTime(str(date)))
+        data.at[row.Index, 'Datetime'] = str(getGMTTime(date))
     return data
 
 	
