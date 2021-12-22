@@ -31,7 +31,6 @@ def load_data(ticker, previous_days, previous_data_freq):
     for row in data.itertuples():
         date = data.at[row.Index, 'Datetime']   
         data.at[row.Index, 'Datetime'] = str(getGMTTime(str(date)))
-    data.to_csv(str(ticker)+".csv")
     return data
 
 	
