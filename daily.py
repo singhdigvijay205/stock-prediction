@@ -15,8 +15,7 @@ previous_days = st.selectbox('Select days', ('1d','2d','3d','4d','5d','6d','7d',
 previous_data_freq = st.selectbox('Select Data timeframe', ('1m', '2m', '5m', '15m', '30m', '60m', '90m', '1h', '1d'))
 
 def getGMTTime(utcString):
-  date = moment.date(utcString, "%Y-%m-%d %H:%M:%S+00:00")
-  st.write(date.timezone('Asia/Kolkata').date.strftime("%Y-%m-%d %H:%M:%S"))
+  date = moment.date(utcString, "%Y-%m-%d %H:%M:%S+00:00")  
   return date.timezone('Asia/Kolkata').date.strftime("%Y-%m-%d %H:%M:%S") 
 
 def getGMTTimeForcast(utcString):
