@@ -31,8 +31,8 @@ def load_data(ticker, previous_days, previous_data_freq):
     data.reset_index(inplace=True)
     for row in data.itertuples():
         date = data.at[row.Index, 'Datetime']   
-        st.text(str(getGMTTime(date)).replace("+00:00", ""))
-        data.at[row.Index, 'Datetime'] = str(getGMTTime(date)).replace("+00:00", "")
+        temp = str(getGMTTime(date)).replace("+00:00", "")
+        data.at[row.Index, 'Datetime'] = temp
     return data
 
 	
