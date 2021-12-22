@@ -32,9 +32,8 @@ def load_data(ticker, previous_days, previous_data_freq):
     for row in data.itertuples():
         date = data.at[row.Index, 'Datetime']   
         temp = str(getGMTTime(date)).replace("+00:00", "")
-        st.text(temp)
-        st.text(temp)
-        data.at[row.Index, 'Datetime'] = '1234'
+        data.at[row.Index, 'Datetime'] = temp
+        st.text(data.at[row.Index, 'Datetime'])
     return data
 
 	
