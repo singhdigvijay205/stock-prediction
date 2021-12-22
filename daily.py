@@ -15,7 +15,7 @@ previous_days = st.selectbox('Select days', ('1d','2d','3d','4d','5d','6d','7d',
 previous_data_freq = st.selectbox('Select Data timeframe', ('1m', '2m', '5m', '15m', '30m', '60m', '90m', '1h', '1d'))
 
 def getGMTTime(utcString):
-  date = moment.date(utcString, "%Y-%m-%dT%H:%M:%S+00:00")  
+  date = moment.date(utcString, "%Y-%m-%d %H:%M:%S+00:00")  
   return date.timezone('Asia/Kolkata').date.strftime("%Y-%m-%d %H:%M:%S") 
 
 def getGMTTimeForcast(utcString):
@@ -28,7 +28,7 @@ def load_data(ticker, previous_days, previous_data_freq):
     data.reset_index(inplace=True)
     for row in data.itertuples():
         date = data.at[row.Index, 'Datetime']   
-        data.at[row.Index, 'Datetime'] = str(getGMTTime(str(date)))
+        data.at[row.Index, 'Datetime'] = '123'
     return data
 
 	
