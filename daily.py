@@ -22,9 +22,9 @@ def getGMTTime(utcString):
   date = moment.date(utcString, "%Y-%m-%d %H:%M:%S+00:00")
   return date.locale('Asia/Kolkata').date.strftime("%Y-%m-%d %H:%M:%S")
 
-# def getGMTTimeForcast(utcString):
-#   date = moment.date(utcString, "%Y-%m-%dT%H:%M:%S")
-#   return date.strftime("%Y-%m-%d   %H:%M:%S")   
+def getGMTTimeForcast(utcString):
+  date = moment.date(utcString, "%Y-%m-%dT%H:%M:%S")
+  return date.strftime("%Y-%m-%d   %H:%M:%S")   
 
 @st.cache
 def load_data(ticker, previous_days, previous_data_freq):
@@ -32,8 +32,7 @@ def load_data(ticker, previous_days, previous_data_freq):
     data.reset_index(inplace=True)
     for row in data.itertuples():
         date = data.at[row.Index, 'Datetime']   
-        temp = str(getGMTTime(date)).replace("+00:00", "")
-        data.at[row.Index, 'Datetime'] = pd.Timestamp(temp, tz=None)        
+        data.at[row.Index, 'Datetime'] = pd.Timestamp(str(getGMTTime(date)), tz=None)        
     return data
 
 	
@@ -56,9 +55,9 @@ m.fit(df_train)
 future = m.make_future_dataframe(periods=period, freq='H')
 forecast = m.predict(future)
 
-# for row in forecast.itertuples():
-#     date = forecast.at[row.Index, 'ds']   
-#     forecast.at[row.Index, 'ds'] = str(getGMTTimeForcast(str(date)))
+for row in forecast.itertuples():
+    date = forecast.at[row.Index, 'ds']   
+    forecast.at[row.Index, 'ds'] = str(getGMTTimeForcast(str(date)))
 
 # Show and plot forecast
 st.subheader('Forecast data for '+str(n_hours)+' Hours')
