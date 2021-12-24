@@ -26,7 +26,6 @@ def getGMTTimeForcast(utcString):
   date = moment.date(utcString, "%Y-%m-%dT%H:%M:%S")
   return date.strftime("%Y-%m-%d   %H:%M:%S")   
 
-@st.cache
 def load_data(ticker, previous_days, previous_data_freq):
     data = yf.download(ticker, period=previous_days, interval=previous_data_freq)    
     data.reset_index(inplace=True)
