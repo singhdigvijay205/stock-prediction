@@ -24,10 +24,10 @@ sidebar = st.sidebar
 stocks = ('BTC-USD','EURUSD=X','GOOG', 'AAPL', 'MSFT', 'GME')
 ticker = sidebar.selectbox('Select dataset for prediction', stocks)
 
-period = sidebar.selectbox('Select Days', ('1d','2d','3d','4d','5d','6d'), index=1)
+period = sidebar.selectbox('Select Days', ('1d','2d','3d','4d','5d','6d'))
 interval = sidebar.selectbox('Select Timeframe', ('1m', '2m', '5m', '15m', '30m', '60m'))
 predTime = sidebar.selectbox('Select Prediction Time (in minutes)', (10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60), index=4)
-epoch = sidebar.selectbox('Select Epochs', (1,10,20,30,40,50,60,70,80,90,100), index=2)
+epoch = sidebar.selectbox('Select Epochs', (1,10,20,30,40,50,60,70,80,90,100), index=5)
 
 df = load_data(ticker, period, interval)
 
