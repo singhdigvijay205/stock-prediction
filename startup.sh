@@ -1,1 +1,1 @@
-streamlit run daily.py
+streamlit run app.py
