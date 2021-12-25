@@ -5,4 +5,4 @@ fbprophet==0.6
 plotly 
 moment
 pandas_datareader
-tensorflow=
+tensorflow
